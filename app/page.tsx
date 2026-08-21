@@ -73,9 +73,12 @@ const projects: Project[] = [
 ];
 
 const skillGroups = [
-  ["Engineering", "Next.js / React / TypeScript / Tailwind CSS / Supabase / Vite"],
+  ["Programming languages", "C / C++ / C# / Java / Python / JavaScript / TypeScript"],
+  ["Frameworks", "Flask / Flutter / Next.js"],
+  ["Databases", "MySQL / PostgreSQL / Firebase / Supabase"],
   ["Design", "UI/UX design / Visual systems / Responsive design / Prototyping / Graphic design"],
-  ["Expanding", "MapLibre / Flutter / GSAP / Testing / Accessibility / Service startups"],
+  ["Tools", "Git / VS Code / Photoshop / Figma"],
+  ["Exploring", "Agentic AI / MapLibre / GSAP / Testing / Accessibility"],
 ] as const;
 
 function ProjectEntry({ project }: { project: Project }) {

@@ -478,12 +478,14 @@ main { padding-bottom: 42px; }
 
 .terminal-link > span { color: var(--accent); }
 
-.skill-list { border-top: 1px solid var(--line); }
+.skill-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 36px;
+  border-top: 1px solid var(--line);
+}
 
 .skill-list > div {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 28px;
   padding: 20px 0;
   border-bottom: 1px solid var(--line);
 }
@@ -495,7 +497,10 @@ main { padding-bottom: 42px; }
   line-height: 1.65;
 }
 
-.skill-list h3 { color: var(--accent); }
+.skill-list h3 {
+  margin-bottom: 6px;
+  color: var(--accent);
+}
 .skill-list p { color: var(--muted); }
 
 .education-record {
@@ -608,9 +613,13 @@ main { padding-bottom: 42px; }
 
   .project-entry:first-child .project-entry-body > p:first-child { margin-top: 14px; }
 
-  .skill-list > div {
+  .skill-list {
     grid-template-columns: 1fr;
-    gap: 7px;
+    column-gap: 0;
+  }
+
+  .skill-list > div {
+    padding-block: 18px;
   }
 
   .education-record {
