@@ -343,12 +343,6 @@ main { padding-bottom: 42px; }
   pointer-events: none;
 }
 
-.role-label {
-  margin: 0 0 18px;
-  font-size: 0.82rem;
-  font-weight: 700;
-}
-
 .hero-lead {
   max-width: 650px;
   margin: 0;
@@ -407,15 +401,7 @@ main { padding-bottom: 42px; }
   line-height: 1.72;
 }
 
-.section-intro {
-  max-width: 640px;
-  margin: 14px 0 30px;
-  color: var(--muted);
-  font-size: 0.82rem;
-  line-height: 1.65;
-}
-
-.projects > h2 { margin-bottom: 0; }
+.projects > h2 { margin-bottom: 30px; }
 .skills > h2 { margin-bottom: 28px; }
 
 .project-list {

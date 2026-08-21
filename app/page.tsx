@@ -121,17 +121,14 @@ export default function Home() {
               />
             </div>
             <div className="hero-profile-copy">
-              <p className="role-label"><mark>Full-stack developer + UI/UX designer</mark></p>
-              <p className="hero-lead">I design clear interfaces and build useful software for communities, clients, and growing teams.</p>
-              <p className="hero-bio">I&apos;m Dohn Michael Varquez. My graphic design background shaped how I think about hierarchy, clarity, and the details people notice.</p>
-              <p className="hero-bio">Now I pair that visual foundation with full-stack development. I work hard, follow through, and want to grow into a dependable software engineer.</p>
+              <p className="hero-lead">I&apos;m a fourth-year Computer Science student at Visayas State University, working toward full-stack development and UI/UX design.</p>
+              <p className="hero-bio">I&apos;m interested in full-stack systems, agentic AI, and practical software that helps people.</p>
             </div>
           </div>
         </section>
 
         <section id="projects" className="projects terminal-section" aria-labelledby="projects-title">
-          <h2 id="projects-title">Selected projects</h2>
-          <p className="section-intro">School, commissioned, and community work across web, mobile, mapping, healthcare, and local service systems.</p>
+          <h2 id="projects-title">Projects</h2>
           <div className="project-list">
             {projects.map((project) => <ProjectEntry key={project.name} project={project} />)}
           </div>
