@@ -1,16 +1,16 @@
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import { ArrowUpRight, GithubLogo } from "@phosphor-icons/react/dist/ssr";
 import { SiteHeader } from "@/components/site-header";
+import { AsciiNameplate } from "@/components/ascii-nameplate";
+import { AsciiSakura } from "@/components/ascii-sakura";
 
 type Project = {
   name: string;
   description: string;
   repository: string;
   status: string;
+  category: string;
   technologies: string[];
-  image: string | StaticImageData;
-  featured?: boolean;
-  localImage?: boolean;
 };
 
 const projects: Project[] = [
@@ -19,106 +19,77 @@ const projects: Project[] = [
     description: "An independent editorial city guide combining a living archive, a 3D city atlas, place discovery, reviewed Street View, and scenario-based hazard maps.",
     repository: "https://github.com/Kikypochiki/hello-tagbilaran",
     status: "Active",
+    category: "City guide and mapping",
     technologies: ["Next.js 16", "TypeScript", "MapLibre", "GSAP", "Playwright"],
-    image: "/images/hello-tagbilaran.jpg",
-    featured: true,
-    localImage: true,
+  },
+  {
+    name: "Dormitory Evaluation System",
+    description: "A retention-focused system shaped around the real review process and responsibilities of Mabolo Men's Home.",
+    repository: "https://github.com/Kikypochiki/Dormitory-Evaluation-System",
+    status: "Repository setup",
+    category: "Community operations",
+    technologies: ["Evaluation workflows", "Dormitory operations"],
   },
   {
     name: "Co5mo",
-    description: "A rapid emergency-response system commissioned by Visayas State University Nursing students, designed around coordinated alerts and timely action.",
+    description: "A rapid emergency-response system commissioned by VSU Nursing students, designed around coordinated alerts and timely action.",
     repository: "https://github.com/Kikypochiki/co5mo",
     status: "Paused prototype",
+    category: "Emergency response",
     technologies: ["Next.js", "Supabase", "React Query", "Web Push"],
-    image: "https://opengraph.githubassets.com/portfolio/Kikypochiki/co5mo",
   },
   {
     name: "UbayHarvest",
-    description: "An agricultural showcase marketplace created to help farmers in Ubay, Bohol present produce and connect their harvest with potential buyers.",
+    description: "An agricultural showcase marketplace helping farmers in Ubay, Bohol present produce and connect their harvest with buyers.",
     repository: "https://github.com/Kikypochiki/max-food",
     status: "Prototype",
+    category: "Agricultural marketplace",
     technologies: ["Flutter", "Dart", "Mobile UI"],
-    image: "https://opengraph.githubassets.com/portfolio/Kikypochiki/max-food",
   },
   {
     name: "Mabolo Plants",
-    description: "A QR tagging platform for Jardin de Mabolo. Each scan opens clear crop and vegetable information for dormitory garden visitors.",
+    description: "A QR tagging platform for Jardin de Mabolo. Each scan opens clear crop and vegetable information for garden visitors.",
     repository: "https://github.com/Kikypochiki/mabolo-plants",
     status: "Active",
+    category: "QR information platform",
     technologies: ["React 19", "TypeScript", "Vite", "React Router"],
-    image: "https://opengraph.githubassets.com/portfolio/Kikypochiki/mabolo-plants",
   },
   {
     name: "Storya Viscans",
     description: "A community platform where Viscans could share stories, join campus discussions, and access academic resources in one familiar space.",
     repository: "https://github.com/Kikypochiki/Storya-Viscans",
     status: "Discontinued",
+    category: "Campus community",
     technologies: ["Next.js", "Supabase", "Radix UI", "TypeScript"],
-    image: "/images/storya-viscans.jpg",
-    localImage: true,
   },
   {
     name: "E-Maternity Portal",
-    description: "A healthcare management portal commissioned by Nursing students for patient records, appointments, and secure access to maternity information.",
+    description: "A commissioned healthcare portal for patient records, appointments, and secure access to maternity information.",
     repository: "https://github.com/Kikypochiki/E-maternity-portal",
     status: "Paused prototype",
+    category: "Healthcare management",
     technologies: ["Next.js", "Supabase", "Radix UI", "React Hook Form"],
-    image: "https://opengraph.githubassets.com/portfolio/Kikypochiki/E-maternity-portal",
-  },
-  {
-    name: "Dormitory Evaluation System",
-    description: "A retention-focused evaluation system for Mabolo Men's Home, shaped around the dormitory's real review process and community responsibilities.",
-    repository: "https://github.com/Kikypochiki/Dormitory-Evaluation-System",
-    status: "Repository setup",
-    technologies: ["Evaluation workflows", "Dormitory operations"],
-    image: "https://opengraph.githubassets.com/portfolio/Kikypochiki/Dormitory-Evaluation-System",
   },
 ];
 
 const skillGroups = [
-  {
-    title: "Build",
-    items: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "Vite"],
-  },
-  {
-    title: "Design",
-    items: ["UI/UX design", "Visual systems", "Responsive design", "Prototyping", "Graphic design"],
-  },
-  {
-    title: "Explore",
-    items: ["MapLibre", "Flutter", "GSAP", "Testing", "Accessibility", "Service startups"],
-  },
-];
+  ["Engineering", "Next.js / React / TypeScript / Tailwind CSS / Supabase / Vite"],
+  ["Design", "UI/UX design / Visual systems / Responsive design / Prototyping / Graphic design"],
+  ["Expanding", "MapLibre / Flutter / GSAP / Testing / Accessibility / Service startups"],
+] as const;
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectEntry({ project }: { project: Project }) {
   return (
-    <article className={`project-card ${project.featured ? "project-featured" : ""}`}>
-      <a className="project-image-link" href={project.repository} target="_blank" rel="noreferrer" aria-label={`Open ${project.name} repository`}>
-        <div className="project-image">
-          <Image
-            src={project.image}
-            alt={`${project.name} project preview`}
-            fill
-            sizes={project.featured ? "(max-width: 900px) 100vw, 65vw" : "(max-width: 900px) 100vw, 45vw"}
-            className="project-image-element"
-            unoptimized={!project.localImage}
-          />
-        </div>
-      </a>
-      <div className="project-content">
-        <div className="project-meta">
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <span>{project.status}</span>
-        </div>
+    <article className="project-entry">
+      <header className="project-entry-header">
         <h3>{project.name}</h3>
+        <p><span>{project.category}</span><span>{project.status}</span></p>
+      </header>
+      <div className="project-entry-body">
         <p>{project.description}</p>
-        <div className="technology-list" aria-label={`${project.name} technologies`}>
-          {project.technologies.map((technology) => (
-            <span key={technology}>{technology}</span>
-          ))}
-        </div>
-        <a className="text-link" href={project.repository} target="_blank" rel="noreferrer">
-          Open repository <ArrowUpRight size={17} weight="regular" aria-hidden="true" />
+        <p className="technology-line">{project.technologies.join(" / ")}</p>
+        <a className="terminal-link" href={project.repository} target="_blank" rel="noreferrer">
+          <span aria-hidden="true">▸</span> open repository <ArrowUpRight size={14} weight="regular" aria-hidden="true" />
         </a>
       </div>
     </article>
@@ -130,101 +101,98 @@ export default function Home() {
     <main id="home">
       <SiteHeader />
 
-      <section className="hero section-shell" aria-labelledby="hero-title">
-        <div className="hero-copy">
-          <p className="eyebrow">Full-stack developer + UI/UX designer</p>
-          <h1 id="hero-title">I design interfaces. <span>I build systems.</span></h1>
-          <p className="hero-intro">Fourth-year Computer Science student turning service problems into useful, considered software for communities and growing teams.</p>
-          <div className="hero-actions">
-            <a className="primary-button" href="#projects">View projects</a>
-            <a className="secondary-button" href="https://github.com/Kikypochiki" target="_blank" rel="noreferrer">
-              <GithubLogo size={18} weight="regular" aria-hidden="true" /> GitHub profile
+      <div className="terminal-shell">
+        <section className="hero" aria-labelledby="hero-title">
+          <p className="prompt"><strong>dohn@varquez</strong> ~ % ./portfolio</p>
+          <div className="hero-identity">
+            <AsciiNameplate />
+            <AsciiSakura />
+          </div>
+          <p className="role-label"><mark>Full-stack developer + UI/UX designer</mark></p>
+          <p className="hero-lead">I design clear interfaces and build useful software for communities, clients, and growing teams.</p>
+          <div className="hero-links">
+            <a href="#projects">view projects</a>
+            <a href="https://github.com/Kikypochiki" target="_blank" rel="noreferrer">visit GitHub</a>
+          </div>
+        </section>
+
+        <section id="about" className="about terminal-section" aria-labelledby="about-title">
+          <h2 id="about-title">About</h2>
+          <div className="profile-record">
+            <div className="profile-image">
+              <Image
+                src="/images/dohn-portrait.png"
+                alt="Dohn Michael Varquez overlooking the city at night"
+                fill
+                priority
+                sizes="(max-width: 720px) calc(100vw - 32px), 190px"
+                className="portrait-image"
+              />
+            </div>
+            <div className="about-copy">
+              <p className="about-intro">I&apos;m Dohn Michael Varquez. My graphic design background shaped how I think about hierarchy, clarity, and the details people notice.</p>
+              <p>Today, I combine that visual foundation with full-stack development. I want to grow into a software engineer who can carry a useful product from early interface decisions through implementation.</p>
+              <dl className="about-details">
+                <div>
+                  <dt>Design foundation</dt>
+                  <dd>UI/UX design, visual systems, prototyping, and responsive interfaces.</dd>
+                </div>
+                <div>
+                  <dt>Engineering direction</dt>
+                  <dd>Full-stack products that solve practical problems for real people.</dd>
+                </div>
+                <div>
+                  <dt>Working style</dt>
+                  <dd>I work hard, follow through, and get things done.</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="projects terminal-section" aria-labelledby="projects-title">
+          <h2 id="projects-title">Selected projects</h2>
+          <p className="section-intro">School, commissioned, and community work across web, mobile, mapping, healthcare, and local service systems.</p>
+          <div className="project-list">
+            {projects.map((project) => <ProjectEntry key={project.name} project={project} />)}
+          </div>
+        </section>
+
+        <section id="skills" className="skills terminal-section" aria-labelledby="skills-title">
+          <h2 id="skills-title">Skills + technology</h2>
+          <div className="skill-list">
+            {skillGroups.map(([title, items]) => (
+              <div key={title}>
+                <h3>{title}</h3>
+                <p>{items}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="education" className="education terminal-section" aria-labelledby="education-title">
+          <h2 id="education-title">Education</h2>
+          <div className="education-record">
+            <div>
+              <h3>Bachelor of Science in Computer Science</h3>
+              <p>Visayas State University</p>
+            </div>
+            <p>Fourth-year student</p>
+          </div>
+          <p>My project work connects software engineering with interface design and community-focused technology.</p>
+        </section>
+
+        <section id="contact" className="contact terminal-section" aria-labelledby="contact-title">
+          <h2 id="contact-title">Let&apos;s work together.</h2>
+          <p>I am open to entry-level software roles, internships, freelance projects, and collaborations where design and engineering meet.</p>
+          <div className="contact-links">
+            <a className="terminal-link" href="mailto:dohnmechael@gmail.com"><span aria-hidden="true">▸</span> dohnmechael@gmail.com</a>
+            <a className="terminal-link" href="https://github.com/Kikypochiki" target="_blank" rel="noreferrer">
+              <GithubLogo size={15} weight="regular" aria-hidden="true" /> github.com/Kikypochiki
             </a>
           </div>
-        </div>
-
-        <div className="portrait-frame">
-          <Image
-            src="/images/dohn-portrait.png"
-            alt="Portrait of Dohn Michael Varquez overlooking the city at night"
-            fill
-            priority
-            sizes="(max-width: 800px) 100vw, 45vw"
-            className="portrait-image"
-          />
-          <div className="portrait-caption">
-            <span>Dohn Michael Varquez</span>
-            <span>Software engineer in progress</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="about section-shell section-space" aria-labelledby="about-title">
-        <div className="section-marker">About</div>
-        <div className="about-grid">
-          <h2 id="about-title">Design trained my eye. Computer science taught me how to make the idea work.</h2>
-          <div className="about-copy">
-            <p>I am Dohn Michael Varquez, a fourth-year Computer Science student at Visayas State University with a background in graphic design and a growing full-stack practice.</p>
-            <p>I am most interested in useful systems: tools grounded in real communities, clear interfaces, and service-driven ideas that can become sustainable products.</p>
-            <blockquote>“I work hard, follow through, and get things done.”</blockquote>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" className="projects section-shell section-space" aria-labelledby="projects-title">
-        <header className="section-heading">
-          <p className="eyebrow">Selected work</p>
-          <h2 id="projects-title">Software shaped by real people and places.</h2>
-          <p>Community platforms, student commissions, local discovery, agriculture, healthcare, and dormitory operations.</p>
-        </header>
-        <div className="project-grid">
-          {projects.map((project, index) => (
-            <ProjectCard key={project.name} project={project} index={index} />
-          ))}
-        </div>
-      </section>
-
-      <section id="skills" className="skills section-shell section-space" aria-labelledby="skills-title">
-        <div className="section-marker">Skills + technology</div>
-        <h2 id="skills-title">A design-aware engineering toolkit.</h2>
-        <div className="skill-grid">
-          {skillGroups.map((group) => (
-            <article key={group.title} className="skill-group">
-              <h3>{group.title}</h3>
-              <div className="skill-items">
-                {group.items.map((item) => <span key={item}>{item}</span>)}
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="education" className="education section-shell section-space" aria-labelledby="education-title">
-        <div className="education-copy">
-          <p className="eyebrow">Education</p>
-          <h2 id="education-title">Visayas State University</h2>
-          <p>Bachelor of Science in Computer Science</p>
-        </div>
-        <div className="education-detail">
-          <strong>Fourth-year student</strong>
-          <p>Building at the intersection of software engineering, interface design, and community-focused technology.</p>
-        </div>
-      </section>
-
-      <section id="contact" className="contact section-shell section-space" aria-labelledby="contact-title">
-        <p className="eyebrow">Contact</p>
-        <h2 id="contact-title">Have a role, project, or problem worth building?</h2>
-        <a className="contact-email" href="mailto:dohnmechael@gmail.com">dohnmechael@gmail.com</a>
-        <div className="contact-links">
-          <a href="https://github.com/Kikypochiki" target="_blank" rel="noreferrer">GitHub</a>
-          <a href="#home">Back to top</a>
-        </div>
-      </section>
-
-      <footer className="site-footer section-shell">
-        <span>Dohn Michael Varquez</span>
-        <span>Designed and built with care.</span>
-      </footer>
+        </section>
+      </div>
     </main>
   );
 }

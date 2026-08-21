@@ -35,6 +35,12 @@ export function SiteHeader() {
       </nav>
 
       <div className="header-actions">
+        <div className="scroll-progress" aria-label="Page scroll progress">
+          <span className="scroll-progress-track" aria-hidden="true">
+            <span className="scroll-progress-fill" />
+          </span>
+          <span className="scroll-progress-value" aria-hidden="true" />
+        </div>
         <button className="icon-button" type="button" onClick={toggleTheme} aria-label="Toggle color theme">
           <Sun className="theme-icon-light" size={19} weight="regular" />
           <Moon className="theme-icon-dark" size={19} weight="regular" />
