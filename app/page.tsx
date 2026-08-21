@@ -151,14 +151,9 @@ export default function Home() {
 
         <section id="education" className="education terminal-section" aria-labelledby="education-title">
           <h2 id="education-title">Education</h2>
-          <div className="education-record">
-            <div>
-              <h3>Bachelor of Science in Computer Science</h3>
-              <p>Visayas State University</p>
-            </div>
-            <p>Fourth-year student</p>
-          </div>
-          <p>My project work connects software engineering with interface design and community-focused technology.</p>
+          <p className="education-summary">
+            Bachelor of Science in Computer Science at <span>Visayas State University</span>
+          </p>
         </section>
 
         <section id="contact" className="contact terminal-section" aria-labelledby="contact-title">

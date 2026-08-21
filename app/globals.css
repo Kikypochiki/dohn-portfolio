@@ -393,7 +393,6 @@ main { padding-bottom: 42px; }
   object-position: 50% 38%;
 }
 
-.education > p,
 .contact > p {
   margin: 14px 0 0;
   color: var(--muted);
@@ -503,26 +502,15 @@ main { padding-bottom: 42px; }
 }
 .skill-list p { color: var(--muted); }
 
-.education-record {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 32px;
+.education-summary {
   margin-top: 28px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--line);
+  margin-bottom: 0;
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.65;
 }
 
-.education-record h3,
-.education-record p {
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.55;
-}
-
-.education-record h3 { font-size: 0.92rem; }
-.education-record div p { margin-top: 4px; color: var(--accent); }
-.education-record > p { color: var(--faint); text-align: right; }
+.education-summary span { color: var(--accent); }
 
 .contact-links {
   display: flex;
@@ -622,13 +610,6 @@ main { padding-bottom: 42px; }
     padding-block: 18px;
   }
 
-  .education-record {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .education-record > p { text-align: left; }
 }
 
 @media (max-width: 460px) {
