@@ -103,49 +103,28 @@ export default function Home() {
 
       <div className="terminal-shell">
         <section className="hero" aria-labelledby="hero-title">
-          <p className="prompt"><strong>dohn@varquez</strong> ~ % ./portfolio</p>
+          <p className="prompt"><strong>dohn@varquez</strong>./portfolio</p>
           <div className="hero-identity">
             <AsciiNameplate />
             <AsciiSakura />
           </div>
-          <p className="role-label"><mark>Full-stack developer + UI/UX designer</mark></p>
-          <p className="hero-lead">I design clear interfaces and build useful software for communities, clients, and growing teams.</p>
-          <div className="hero-links">
-            <a href="#projects">view projects</a>
-            <a href="https://github.com/Kikypochiki" target="_blank" rel="noreferrer">visit GitHub</a>
-          </div>
-        </section>
-
-        <section id="about" className="about terminal-section" aria-labelledby="about-title">
-          <h2 id="about-title">About</h2>
-          <div className="profile-record">
+          <div id="about" className="hero-profile" aria-labelledby="about-title">
+            <h2 id="about-title" className="sr-only">About Dohn Michael Varquez</h2>
             <div className="profile-image">
               <Image
                 src="/images/dohn-portrait.png"
                 alt="Dohn Michael Varquez overlooking the city at night"
                 fill
                 priority
-                sizes="(max-width: 720px) calc(100vw - 32px), 190px"
+                sizes="(max-width: 720px) calc(100vw - 32px), 210px"
                 className="portrait-image"
               />
             </div>
-            <div className="about-copy">
-              <p className="about-intro">I&apos;m Dohn Michael Varquez. My graphic design background shaped how I think about hierarchy, clarity, and the details people notice.</p>
-              <p>Today, I combine that visual foundation with full-stack development. I want to grow into a software engineer who can carry a useful product from early interface decisions through implementation.</p>
-              <dl className="about-details">
-                <div>
-                  <dt>Design foundation</dt>
-                  <dd>UI/UX design, visual systems, prototyping, and responsive interfaces.</dd>
-                </div>
-                <div>
-                  <dt>Engineering direction</dt>
-                  <dd>Full-stack products that solve practical problems for real people.</dd>
-                </div>
-                <div>
-                  <dt>Working style</dt>
-                  <dd>I work hard, follow through, and get things done.</dd>
-                </div>
-              </dl>
+            <div className="hero-profile-copy">
+              <p className="role-label"><mark>Full-stack developer + UI/UX designer</mark></p>
+              <p className="hero-lead">I design clear interfaces and build useful software for communities, clients, and growing teams.</p>
+              <p className="hero-bio">I&apos;m Dohn Michael Varquez. My graphic design background shaped how I think about hierarchy, clarity, and the details people notice.</p>
+              <p className="hero-bio">Now I pair that visual foundation with full-stack development. I work hard, follow through, and want to grow into a dependable software engineer.</p>
             </div>
           </div>
         </section>
