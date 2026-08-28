@@ -68,6 +68,45 @@ const mabolo: Artwork[] = [
 
 const allWorks = [...cofilang, ...mabolo];
 
+const asciiLetters: Record<string, readonly string[]> = {
+  A: [" ### ", "#   #", "#####", "#   #", "#   #"],
+  C: [" ####", "#    ", "#    ", "#    ", " ####"],
+  D: ["#### ", "#   #", "#   #", "#   #", "#### "],
+  E: ["#####", "#    ", "#### ", "#    ", "#####"],
+  G: [" ####", "#    ", "#  ##", "#   #", " ####"],
+  H: ["#   #", "#   #", "#####", "#   #", "#   #"],
+  I: ["#####", "  #  ", "  #  ", "  #  ", "#####"],
+  N: ["#   #", "##  #", "# # #", "#  ##", "#   #"],
+  P: ["#### ", "#   #", "#### ", "#    ", "#    "],
+  R: ["#### ", "#   #", "#### ", "#  # ", "#   #"],
+  S: [" ####", "#    ", " ### ", "    #", "#### "],
+  V: ["#   #", "#   #", "#   #", " # # ", "  #  "],
+};
+
+const archiveTitleWords = ["GRAPHIC", "DESIGN", "ARCHIVE"];
+
+function AsciiArchiveTitle() {
+  return (
+    <div className="graphic-archive-heading">
+      <h1 className="graphic-stage-title">
+        <span className="graphic-title-text">Graphic Design Archive</span>
+        <span className="graphic-ascii" aria-hidden="true">
+          {archiveTitleWords.map((word) => (
+            <span className="ascii-word" key={word}>
+              {word.split("").map((letter, index) => (
+                <span className="ascii-letter" key={`${word}-${letter}-${index}`}>
+                  {asciiLetters[letter].join("\n")}
+                </span>
+              ))}
+            </span>
+          ))}
+        </span>
+      </h1>
+      <p className="graphic-stage-subtitle">Selected publication materials and visual systems.</p>
+    </div>
+  );
+}
+
 export function GraphicGallery() {
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -361,7 +400,7 @@ export function GraphicGallery() {
     <>
       <section className="graphic-stage" aria-label="All graphic design work">
         <div className="graphic-showcase">
-          <h1 className="graphic-stage-title">Graphic Design Archive</h1>
+          <AsciiArchiveTitle />
           <div className="graphic-rail" ref={railViewportRef}>
             <div className="graphic-rail-track" ref={railTrackRef}>
               {[false, true].map((clone) => (
