@@ -1,14 +1,15 @@
 "use client";
 
 import { List, Moon, Sun, X } from "@phosphor-icons/react";
+import Link from "next/link";
 import { useState } from "react";
 
 const navItems = [
-  ["About", "#about"],
-  ["Projects", "#projects"],
-  ["Skills", "#skills"],
-  ["Education", "#education"],
-  ["Contact", "#contact"],
+  ["About", "/#about"],
+  ["Projects", "/#projects"],
+  ["Graphic design", "/graphic-design"],
+  ["Skills", "/#skills"],
+  ["Contact", "/#contact"],
 ] as const;
 
 export function SiteHeader() {
@@ -22,15 +23,15 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <a className="wordmark" href="#home" aria-label="Dohn Michael Varquez, home">
+      <Link className="wordmark" href="/" aria-label="Dohn Michael Varquez, home">
         DMV<span>/</span>
-      </a>
+      </Link>
 
       <nav className="desktop-nav" aria-label="Primary navigation">
         {navItems.map(([label, href]) => (
-          <a key={href} href={href}>
+          <Link key={href} href={href}>
             {label}
-          </a>
+          </Link>
         ))}
       </nav>
 
@@ -53,9 +54,9 @@ export function SiteHeader() {
       {menuOpen && (
         <nav id="mobile-navigation" className="mobile-nav" aria-label="Mobile navigation">
           {navItems.map(([label, href]) => (
-            <a key={href} href={href} onClick={() => setMenuOpen(false)}>
+            <Link key={href} href={href} onClick={() => setMenuOpen(false)}>
               {label}
-            </a>
+            </Link>
           ))}
         </nav>
       )}
