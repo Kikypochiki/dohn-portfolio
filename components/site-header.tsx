@@ -7,9 +7,9 @@ import { useState } from "react";
 const navItems = [
   ["About", "/#about"],
   ["Projects", "/#projects"],
-  ["Graphic design", "/graphic-design"],
   ["Skills", "/#skills"],
   ["Contact", "/#contact"],
+  ["Graphic design", "/graphic-design"],
 ] as const;
 
 export function SiteHeader() {
