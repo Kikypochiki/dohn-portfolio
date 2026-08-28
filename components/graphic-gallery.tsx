@@ -360,43 +360,45 @@ export function GraphicGallery() {
   return (
     <>
       <section className="graphic-stage" aria-label="All graphic design work">
-        <h1 className="graphic-stage-title">Graphic Design Archive</h1>
-        <div className="graphic-rail" ref={railViewportRef}>
-          <div className="graphic-rail-track" ref={railTrackRef}>
-            {[false, true].map((clone) => (
-              <div className="graphic-rail-sequence" key={clone ? "clone" : "original"} aria-hidden={clone}>
-                {allWorks.map((work, index) => (
-                  <button
-                    className={`graphic-slice${hovered === index ? " is-active" : ""}`}
-                    key={`${clone ? "clone" : "original"}-${work.src}`}
-                    type="button"
-                    onMouseEnter={() => {
-                      setActive(index);
-                      setHovered(index);
-                    }}
-                    onMouseLeave={() => setHovered(null)}
-                    onFocus={() => {
-                      setActive(index);
-                      setHovered(index);
-                    }}
-                    onBlur={() => setHovered(null)}
-                    onClick={(event: MouseEvent<HTMLButtonElement>) => openArtwork(index, event.currentTarget)}
-                    style={{ "--slice-index": index } as CSSProperties}
-                    aria-label={clone ? undefined : `View ${work.title}`}
-                    tabIndex={clone ? -1 : 0}
-                  >
-                    <Image
-                      src={work.src}
-                      alt=""
-                      fill
-                      loading={index < 5 ? "eager" : "lazy"}
-                      sizes="(max-width: 720px) 72vw, 34vw"
-                      className="graphic-slice-image"
-                    />
-                  </button>
-                ))}
-              </div>
-            ))}
+        <div className="graphic-showcase">
+          <h1 className="graphic-stage-title">Graphic Design Archive</h1>
+          <div className="graphic-rail" ref={railViewportRef}>
+            <div className="graphic-rail-track" ref={railTrackRef}>
+              {[false, true].map((clone) => (
+                <div className="graphic-rail-sequence" key={clone ? "clone" : "original"} aria-hidden={clone}>
+                  {allWorks.map((work, index) => (
+                    <button
+                      className={`graphic-slice${hovered === index ? " is-active" : ""}`}
+                      key={`${clone ? "clone" : "original"}-${work.src}`}
+                      type="button"
+                      onMouseEnter={() => {
+                        setActive(index);
+                        setHovered(index);
+                      }}
+                      onMouseLeave={() => setHovered(null)}
+                      onFocus={() => {
+                        setActive(index);
+                        setHovered(index);
+                      }}
+                      onBlur={() => setHovered(null)}
+                      onClick={(event: MouseEvent<HTMLButtonElement>) => openArtwork(index, event.currentTarget)}
+                      style={{ "--slice-index": index } as CSSProperties}
+                      aria-label={clone ? undefined : `View ${work.title}`}
+                      tabIndex={clone ? -1 : 0}
+                    >
+                      <Image
+                        src={work.src}
+                        alt=""
+                        fill
+                        loading={index < 5 ? "eager" : "lazy"}
+                        sizes="(max-width: 720px) 72vw, 34vw"
+                        className="graphic-slice-image"
+                      />
+                    </button>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
         <div className="graphic-stage-meta" aria-live="polite">

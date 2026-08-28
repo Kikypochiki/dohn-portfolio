@@ -534,11 +534,18 @@ main { padding-bottom: 42px; }
   height: calc(100dvh - 42px);
   min-height: 0;
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-rows: minmax(0, 1fr) auto;
   align-items: center;
   margin: 0;
   padding-block: clamp(18px, 3vh, 32px);
   overflow: hidden;
+}
+
+.graphic-showcase {
+  width: 100%;
+  display: grid;
+  align-self: center;
+  gap: clamp(16px, 2.4vh, 26px);
 }
 
 .graphic-stage-title {
@@ -546,12 +553,11 @@ main { padding-bottom: 42px; }
   max-width: 1400px;
   margin: 0 auto;
   color: color-mix(in srgb, var(--text) 90%, var(--muted));
-  font-size: clamp(1.55rem, 4.2vw, 3.85rem);
+  font-size: clamp(2rem, 5.2vw, 4.8rem);
   font-weight: 520;
   line-height: 0.94;
   letter-spacing: -0.06em;
   white-space: nowrap;
-  transform: translateY(clamp(18px, 3.6vh, 34px));
 }
 
 .graphic-rail {
@@ -893,8 +899,11 @@ main { padding-bottom: 42px; }
   .graphic-stage-title {
     width: auto;
     margin-inline: 16px;
-    font-size: clamp(1.5rem, 7vw, 2rem);
-    transform: translateY(12px);
+    font-size: clamp(1.25rem, 6.45vw, 2rem);
+  }
+
+  .graphic-showcase {
+    gap: 14px;
   }
 
   .graphic-stage-meta strong {
